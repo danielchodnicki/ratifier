@@ -1,0 +1,36 @@
+$lightMain: #fdd
+$lightDarker: #fdd
+$lightLighter: #fee
+
+body,
+.themeLight
+  background: $lightLighter
+  color: #200
+  transition: 1s
+
+  .albumBox
+    background: $lightMain
+    color: #000
+
+  .btn
+    background: $lightMain
+    color: #000
+    transition: 1s
+
+  .mobileMenuButton
+    background: $lightMain
+    border-color: #000
+    color: #000
+    transition: 1s
+    &.active
+      background: $lightLighter
+
+  .input
+    background: $lightLighter
+    border-color: #000
+    color: #000
+    transition: 1s
+
+  .ratingDataSlot
+    background: $lightMain
+    transition: background-color 1s, opacity .14s

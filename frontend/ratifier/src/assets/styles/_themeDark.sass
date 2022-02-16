@@ -1,0 +1,40 @@
+$darkMain: #500
+$darkLighter: #722
+$darkDarker: #200
+
+body,
+.themeDark
+  background: $darkDarker
+  color: #fee
+  transition: 1s
+
+  .albumBox
+    background: $darkMain
+    color: #fff
+
+  .btn
+    background: $darkMain
+    color: #fff
+    transition: 1s
+
+  .mobileMenuButton
+    background: $darkMain
+    border-color: #fff
+    color: #fff
+    transition: 1s
+    &.active
+      background: $darkLighter
+
+  .input
+    background: $darkDarker
+    border-color: #fff
+    color: #fff
+    transition: 1s
+
+  .ratingDataSlot
+    background: $darkMain
+    transition: background-color 1s, opacity .14s
+
+  .signal
+    span
+      border-color: #fff

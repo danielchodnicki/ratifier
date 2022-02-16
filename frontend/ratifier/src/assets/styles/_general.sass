@@ -1,0 +1,60 @@
+img
+  max-width: 100%
+  height: auto
+
+.btn
+  background: $secondaryColor
+  color: #fff
+  border: none
+  text-transform: uppercase
+  font-weight: 100
+  padding: .4em .6em
+  margin: .5em
+  cursor: pointer
+  &:hover
+    opacity: .8
+
+.btnTransparent
+  background: transparent
+  border: none
+  color: inherit
+  cursor: pointer
+
+.input
+  background: transparent
+  border: none
+  border-bottom: 1px solid #000
+
+.signal
+  border-color: #000
+  display: inline-block
+  position: relative
+  width: 1.2em
+  height: 1.2em
+  font-size: 1em
+  vertical-align: text-top
+
+  span
+    position: absolute
+    border: .1em solid #000
+    border-color: inherit
+    box-sizing: border-box
+    opacity: 1
+    border-radius: 50%
+    animation: signal 1s cubic-bezier(0, 0.2, 0.8, 1) infinite
+    width: 1.2em
+    height: 1.2em
+    top: 0
+    left: 0
+
+    &:nth-child(2)
+      animation-delay: -0.5s
+
+@keyframes signal
+  0%
+    transform: scale(0)
+    opacity: 1
+
+  100%
+    transform: scale(1)
+    opacity: 0

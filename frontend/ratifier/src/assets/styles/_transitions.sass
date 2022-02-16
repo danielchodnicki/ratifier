@@ -1,0 +1,38 @@
+.fade-enter-from,
+.fade-leave-from
+  transition: .5s linear
+
+.fade-enter-active,
+.fade-leave-active
+  opacity: 0
+  transition: opacity .5s
+
+.fade-enter-from,
+.fade-leave-to
+  opacity: 0
+  transition: .5s
+
+
+.slider-enter-active
+  transform: translateX(-100vw)
+  width: 100%
+
+.slider-leave-active ~ .slider-enter-active
+  transform: translateX(100vw)
+
+.slider-enter-to,
+.slider-leave-active ~ .slider-enter-to
+  transform: translateX(0)
+
+
+.slider-leave-active
+  position: absolute
+  top: 0
+  transform: translateX(0vw)
+  width: 100%
+
+.slider-leave-to
+  transform: translateX(-100vw)
+
+.slider-enter-to ~ .slider-leave-to
+  transform: translateX(100vw)

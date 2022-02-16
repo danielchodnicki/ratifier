@@ -1,0 +1,67 @@
+<template>
+    <div class="loginForm">
+        {{ $t( errorMsg ) }}
+    <form
+            @submit.prevent="login"
+            :class=" { loggingIn: loggingIn } ">
+        <label>{{ $t( 'Username' ) }}<br>
+            <input
+                    class="input"
+                    type="text"
+                    v-model="ownUsername">
+        </label>
+        <br>
+        <br>
+        <label>{{ $t( 'Password' ) }}<br>
+            <input
+                    class="input"
+                    type="password"
+                    v-model="ownPassword">
+        </label>
+        <br>
+        <br>
+        <input
+                class="btn"
+                type="submit"
+                :value=" $t( 'Login' ) ">
+    </form>
+    <LoaderAnimation
+            v-if="loggingIn"
+            size="2em" />
+</div>
+</template>
+
+<script>
+    import LoaderAnimation from './LoaderAnimation.vue'
+
+    export default {
+        name: 'LoginForm',
+        components: {
+            LoaderAnimation,
+        },
+        props: {
+            username: '',
+            password: '',
+            error: false,
+            errorMsg: '',
+            loggingIn: false,
+        },
+        data() {
+            return {
+                ownUsername: '',
+                ownPassword: '',
+            }
+        },
+        methods: {
+            login() {
+                this.$emit( 'login' , { username: this.ownUsername , password: this.ownPassword } );
+            }
+        },
+        created() {
+            this.ownUsername = this.username;
+            this.ownPassword = this.password;
+        },
+        emits: [ 'login' ]
+    }
+</script>
+

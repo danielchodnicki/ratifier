@@ -1,0 +1,107 @@
+.albumBox
+  margin: .6em auto
+  background: $mainColor
+  border-radius: 3px
+  color: #000
+  text-align: left
+  max-width: 350px
+  transition: .5s
+
+  .stretcherContent &
+    &:first-child
+      margin-top: 1em
+    &:last-child
+      margin-bottom: 1.5em
+
+  .vote-container
+    overflow: hidden
+    height: 0
+    transition: 1s
+
+  .album-data
+    padding: .2em .6em
+
+  i
+    font-size: .85em
+
+  .starsCointainer
+    transition: 1s
+    position: relative
+    height: 0
+    overflow: hidden
+    & > *
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      opacity: 0
+      transition: 1s
+      text-align: center
+      padding: .2em
+
+  .starRating
+    font-size: 1.6em
+    color: grey
+    background: transparent
+    border: none
+    display: inline-block
+    position: relative
+    cursor: pointer
+
+    .signal
+      position: absolute
+      top: 0
+      left: .1em
+
+
+    &:after
+      content: ''
+      display: block
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 0
+      left: 0
+
+    svg
+      display: block
+
+    &.selected
+      color: gold
+
+    &.loading
+      opacity: .5
+
+  .rating-data
+    display: flex
+    background: #fff
+    padding-top: 1px
+    justify-content: space-between
+    gap: 1px
+
+  .ratingDataSlot
+    flex-grow: 3
+    flex-basis: 33%
+    text-align: center
+    background: $mainColor
+    padding: .2em
+    border: none
+    color: inherit
+    font-size: inherit
+
+  .addRatingButton
+    cursor: pointer
+    transition: .14s
+    &:hover
+      opacity: .9
+
+  .starPercentageContainer
+    position: relative
+    display: inline-block
+
+    .starPercentage
+      position: absolute
+      top: 0
+      left: 0
+      color: gold
+      overflow: hidden
