@@ -1,13 +1,12 @@
 <template>
   <div
           id="app"
-          class="stretcherContainer"
+          class="app stretcherContainer"
           :class=" [ { desktop } , theme ]">
 
     <!-- Header -->
     <div class="stretcherHeader">
       <div class="mainHeader">
-        <div></div>
         <h1
                 class="logotype"
                 :class=" { loggedIn: isLoggedIn }">
@@ -15,6 +14,12 @@
           Ratifier
         </h1>
         <div class="globalButtons">
+          <button
+                  class="btnTransparent"
+                  @click=" showAbout "
+                  >
+            {{ $t( 'About' ) }}
+          </button>
           <button
                   class="btnTransparent languageSwitcher"
                   @click=" setLanguage( 'pl' ) "
@@ -28,23 +33,23 @@
                   :title=" $t('Switch language') "
           >EN</button>
           <button
-                  class="btnTransparent"
+                  class="btnTransparent btnIcon"
                   title="Tryb jasny"
-                  v-if=" theme != 'themeLight'"
+                  v-if=" theme != 'themeLight' "
                   @click=" setTheme( 'themeLight' )"
                   :title=" $t('Light mode') ">
             <font-awesome-icon icon="sun"></font-awesome-icon>
           </button>
           <button
-                  class="btnTransparent"
+                  class="btnTransparent btnIcon"
                   title="Tryb ciemny"
-                  v-if=" theme != 'themeDark'"
+                  v-if=" theme != 'themeDark' "
                   @click=" setTheme( 'themeDark' )"
                   :title=" $t('Dark mode') ">
             <font-awesome-icon icon="moon"></font-awesome-icon>
           </button>
           <button
-                  class="btnTransparent"
+                  class="btnTransparent btnIcon"
                   v-if=" isLoggedIn "
                   @click="logout"
                   :title=" $t('Logout') ">
@@ -98,7 +103,7 @@
               mode="out-in"
               name="fade">
         <div
-                v-if="isLoggedIn"
+                v-if=" isLoggedIn "
                 class="listColumns stretcherContent">
           <Transition
                   mode="in-out"
@@ -108,10 +113,10 @@
                     key="search"
                     v-show=" desktop || tab == 'search' "
                     :class=" { hidden : tab != 'search' }"
-                    :args="searchAlbums"
-                    @new-search="newSearch( $event )"
-                    @load-more="loadMoreSearchResults"
-                    @rate-album="rateAlbum( $event )"
+                    :args=" searchAlbums "
+                    @new-search=" newSearch( $event ) "
+                    @load-more=" loadMoreSearchResults "
+                    @rate-album=" rateAlbum( $event ) "
             ></AlbumList>
           </Transition>
             <Transition mode="in-out" name="slider">
@@ -120,11 +125,11 @@
                   key="userRatings"
                   v-show=" desktop || tab == 'userRatings' "
                   :class=" { hidden : tab != 'userRatings' }"
-                  :args="userRatings"
-                  @mounted="getUserRatings"
-                  @load-more="getUserRatings"
-                  @rate-album="rateAlbum( $event )"
-                  @sort-albums="sortUserRatings( $event )"
+                  :args=" userRatings "
+                  @mounted=" getUserRatings "
+                  @load-more=" getUserRatings "
+                  @rate-album=" rateAlbum( $event ) "
+                  @sort-albums=" sortUserRatings( $event ) "
           ></AlbumList>
             </Transition>
             <Transition mode="in-out" name="slider">
@@ -157,12 +162,19 @@
                 v-if=" ! loadingScreen && ! isLoggedIn "
                 @login="login( $event )"/>
       </Transition>
+
+      <!-- Messages and errors -->
+      <MessagesBox
+              v-if=" hasMessage "
+              :title=" messageTitle "
+              :message=" messageText "
+              @close-popup=" hasMessage = false ">
+      </MessagesBox>
     </div>
   </div>
 </template>
 
 <script>
-  import i18n from './main.js'
   import Ratifier from './vendor/ratifier-library'
   import GeneralUsage from './mixins/GeneralUsage';
   import UserInterface from './mixins/UserInterface';
@@ -171,9 +183,10 @@
   import LoaderAnimation from './components/LoaderAnimation.vue';
   import AlbumList from './components/AlbumList.vue'
   import LoginForm from './components/LoginForm.vue'
+  import MessagesBox from './components/MessagesBox';
 
 const ratifier = Ratifier( {
-    url: 'https://web-zeppelin.pl/ratifier-backend/wp-json/',
+    url: process.env.VUE_APP_BACKEND_URL,
     wpRoute: 'wp/v2/',
   });
 
@@ -185,7 +198,7 @@ export default {
     LoginForm,
     LoaderAnimation,
     AlbumList,
-    i18n,
+    MessagesBox,
   },
 
   mixins: [
@@ -201,10 +214,23 @@ export default {
       settings: {
         ratingLevels: [1,2,3,4,5],
       },
+      hasMessage: false,
+      messageTitle: '',
+      messageText: '',
+    }
+  },
+
+  methods: {
+    showAbout() {
+      this.hasMessage = true;
+      this.messageTitle = 'About';
+      this.messageText = 'About text';
     }
   },
 
   created() {
+
+    console.log(process.env.VUE_APP_BACKEND_URL);
 
     this.setDefaults();
 

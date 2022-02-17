@@ -1,3 +1,36 @@
+.mainHeader
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+
+  & > *, &:before
+    flex-grow: 2
+    flex-shrink: 2
+    flex-basis: 20%
+
+  &:before
+    content: ''
+
+  .globalButtons
+    box-sizing: border-box
+    font-size: .8em
+    padding: .83em .8em .8em .2em
+    text-align: right
+    & > *
+      margin-left: .4em
+
+  .desktop &
+    padding-right: 0
+
+  @media (max-width: 600px)
+
+    &:before
+      display: none
+
+    .globalButtons
+      flex-basis: 100%
+      text-align: center
+
 .logotype
   font-size: 2em
   margin: 0
@@ -7,15 +40,6 @@
   &.loggedIn
     font-size: 1.3em
 
-.languageSwitcher
-  font-size: .8em
 
-.globalButtons
-  box-sizing: border-box
-  padding: .83em .8em .8em .2em
-  text-align: right
-  & > *
-    margin-left: .4em
 
-  .desktop &
-    padding-right: 0
+

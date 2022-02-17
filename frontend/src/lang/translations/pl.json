@@ -28,5 +28,8 @@
   "title_desc" : "Tytułem albumu malejąco",
   "title_asc" : "Tytułem albumu rosnąco",
   "year_desc" : "Rokiem wydania malejąco",
-  "year_asc" : "Rokiem wydania rosnąco"
+  "year_asc" : "Rokiem wydania rosnąco",
+  "About" : "O projekcie",
+  "Close pop-up" : "Zamknij wiadomość",
+  "About text" : "Ten projekt jest ćwiczeniem z tworzenia aplikacji w technologii Vue.js z wykorzystaniem WordPress na backendzie oraz WordPress API do komunikacji.<br><br>Autor: Daniel Chodnicki<br>daniel@web-zeppelin.pl"
 }
