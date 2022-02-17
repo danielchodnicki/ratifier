@@ -1,7 +1,7 @@
 body, html
   height: 100%
 
-#app
+.app
   font-family: 'Source Sans Pro', sans-serif
   -webkit-font-smoothing: antialiased
   text-align: center
@@ -10,24 +10,10 @@ body, html
   min-height: 100vh
   margin: 0 auto
 
-  .mainHeader
-    display: flex
-    justify-content: space-between
-    & > *
-      flex-grow: 2
-      flex-shrink: 2
-      flex-basis: 20%
-
   .listColumns
     position: relative
     overflow: hidden
     transition: .5s
-
-  .logout
-    //position: absolute
-    top: 1em
-    right: 1em
-    cursor: pointer
 
   .albumList
     transition: 1s
@@ -36,9 +22,6 @@ body, html
     display: flex
     height: 100%
     flex-flow: column
-
-    .logout
-      right: 0
 
     & > div
       position: relative
