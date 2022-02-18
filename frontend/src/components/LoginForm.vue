@@ -28,6 +28,11 @@
     <LoaderAnimation
             v-if="loggingIn"
             size="2em" />
+        <span v-html=" $t( 'Login as' ) "></span><br>
+        Ala / Ala<br>
+        Bartek / Bartek<br>
+        Cecylia / Cecylia<br>
+        Darek / Darek
 </div>
 </template>
 
