@@ -13,7 +13,9 @@
                 <input
                         type="submit"
                         :value="$t('Search')"
-                        class="btn">
+                        class="btn"
+                        :disabled=" searchQuery "
+                >
             </form>
             <form
                 v-if="args.orderBy"

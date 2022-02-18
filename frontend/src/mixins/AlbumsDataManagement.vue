@@ -15,9 +15,7 @@
                 this.ratifier.getRatedAlbums( ++this.allRatings.offset , this.allRatings.currentOrderBy )
                     .then(
                         ratings => {
-                            console.log(ratings);
                             this.allRatings.isLoading = false;
-                            this.allRatings.hasMore = false;
                             this.allRatings.albums = this.allRatings.albums.concat( ratings );
                             if ( ! ratings.length || ratings.length < this.ratifier.getConfig( 'perPage' ) ) {
                                 this.allRatings.hasMore = false;
@@ -27,6 +25,10 @@
                             }
                         }
                     )
+                .catch( e => {
+                    this.hasMessage = true;
+                    this.messageText = 'Unexpected error';
+                })
             },
 
             getUserRatings() {
@@ -45,6 +47,10 @@
                             }
                         }
                     )
+                    .catch( e => {
+                        this.hasMessage = true;
+                        this.messageText = 'Unexpected error';
+                    })
             },
 
             sortAllAlbums( orderBy ) {
@@ -68,6 +74,10 @@
                 })
                     .then( data => {
                         this.updateAlbumData( data.data[0] );
+                    })
+                    .catch( e => {
+                        this.hasMessage = true;
+                        this.messageText = 'Unexpected error';
                     })
             },
 
@@ -103,6 +113,10 @@
                         }
                         this.searchAlbums.isLoading = false;
                     })
+                    .catch( e => {
+                        this.hasMessage = true;
+                        this.messageText = 'Unexpected error';
+                    })
             },
 
             newSearch( searchQuery ) {
@@ -114,6 +128,10 @@
                         this.searchAlbums.albums = results;
                         this.searchAlbums.isLoading = false;
                         this.searchAlbums.hasMore = true;
+                    })
+                    .catch( e => {
+                        this.hasMessage = true;
+                        this.messageText = 'Unexpected error';
                     });
             },
 

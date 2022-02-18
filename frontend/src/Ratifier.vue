@@ -230,8 +230,6 @@ export default {
 
   created() {
 
-    console.log(process.env.VUE_APP_BACKEND_URL);
-
     this.setDefaults();
 
     window.addEventListener('resize', this.setView );

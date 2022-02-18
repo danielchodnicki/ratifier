@@ -23,11 +23,13 @@
         <input
                 class="btn"
                 type="submit"
-                :value=" $t( 'Login' ) ">
+                :value=" $t( 'Login' ) "
+                :disabled=" ! ownPassword || ! ownUsername ">
     </form>
     <LoaderAnimation
-            v-if="loggingIn"
+            v-if=" loggingIn "
             size="2em" />
+        <br>
         <span v-html=" $t( 'Login as' ) "></span><br>
         Ala / Ala<br>
         Bartek / Bartek<br>

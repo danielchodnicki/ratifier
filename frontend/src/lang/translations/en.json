@@ -32,5 +32,6 @@
   "About" : "About",
   "Close pop-up" : "Close pop-up",
   "About text" : "This project is an excercise in creating web application using Vue.js. Backend is build on WordPress with WordPress API as a means of communication.<br><br>Author: Daniel Chodnicki<br>daniel@web-zeppelin.pl",
-  "Login as" : "Login as as one of the users:<br>[ username / password ]"
+  "Login as" : "Login as as one of the users:<br>[ username / password ]",
+  "Unexpected error" : "An unexpected error has occured. Please try again later."
 }

@@ -48,6 +48,11 @@
                         }
                         this.loadingScreen = false;
                     })
+                    .catch( e => {
+                        this.hasMessage = true;
+                        this.messageText = 'Unexpected error';
+                        this.isLoggingIn = false;
+                    })
             },
 
             tryLoggingIn() {

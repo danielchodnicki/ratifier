@@ -6,8 +6,6 @@ const Ratifier = function( config ) {
     return {
         config: config,
         login( user , pass ) {
-            console.log( user, pass );
-            console.log( 'Basic ' + btoa( user + ':' + pass ) );
             return fetch( config.url + 'ratifier/v1/login' , {
                 headers: {
                     //'X-WP-Nonce': config.wpNonce,
@@ -27,7 +25,6 @@ const Ratifier = function( config ) {
                         return result;
                     }
                 } )
-                .catch( e => e );
         },
         getConfig( data ) {
            return this.config[data];

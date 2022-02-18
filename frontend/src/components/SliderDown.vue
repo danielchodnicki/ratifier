@@ -18,7 +18,6 @@
                 el.style.height = 'auto';
             },
             async SliderDownBeforeLeave(el) {
-                console.log(el);
                 el.style.height = el.children[0].clientHeight + 'px';
                 await this.sliderDownDelay(1);
                 el.children[0].style.opacity = 0;

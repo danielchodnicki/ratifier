@@ -32,5 +32,6 @@
   "About" : "O projekcie",
   "Close pop-up" : "Zamknij wiadomość",
   "About text" : "Ten projekt jest ćwiczeniem z tworzenia aplikacji w technologii Vue.js z wykorzystaniem WordPress na backendzie oraz WordPress API do komunikacji.<br><br>Autor: Daniel Chodnicki<br>daniel@web-zeppelin.pl",
-  "Login as" : "Zaloguj się jako jeden z użytkowników:<br>[ login / hasło ]"
+  "Login as" : "Zaloguj się jako jeden z użytkowników:<br>[ login / hasło ]",
+  "Unexcpected error" : "Wystąpił nieoczekiwany błąd. Prosimy spróbować później"
 }
