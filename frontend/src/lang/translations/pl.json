@@ -31,7 +31,7 @@
   "year_asc" : "Rokiem wydania rosnąco",
   "About" : "O projekcie",
   "Close pop-up" : "Zamknij wiadomość",
-  "About text" : "Ten projekt jest ćwiczeniem z tworzenia aplikacji w technologii Vue.js z wykorzystaniem WordPress na backendzie oraz WordPress API do komunikacji.<br><br>Autor: Daniel Chodnicki<br>daniel@web-zeppelin.pl",
+  "About text" : "Ten projekt jest ćwiczeniem z tworzenia aplikacji w technologii Vue.js (w wersji 2; z użyciem vue-i18n i vue-fontawesome). Backend to platforma WordPress z customowym pluginem oraz customowymi endpointami WordPress API.<br><br><a href='https://github.com/danielchodnicki/ratifier/'>Kod dostępny na GitHub</a><br><br>Autor: Daniel Chodnicki<br>daniel@web-zeppelin.pl",
   "Login as" : "Zaloguj się jako jeden z użytkowników:<br>[ login / hasło ]",
   "Unexcpected error" : "Wystąpił nieoczekiwany błąd. Prosimy spróbować później"
 }

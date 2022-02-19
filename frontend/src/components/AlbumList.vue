@@ -5,8 +5,11 @@
             <form
                     v-if="args.searchForm"
                     @submit.prevent="$emit('new-search' , searchQuery )">
+                <font-awesome-icon
+                    icon="search"
+                    style="margin-right: .6em"></font-awesome-icon>
                 <input
-                        v-model="searchQuery"
+                        v-model=" searchQuery "
                         class="input"
                         :placeholder="$t('Title or artist')">
                 <br>
@@ -14,15 +17,16 @@
                         type="submit"
                         :value="$t('Search')"
                         class="btn"
-                        :disabled=" searchQuery "
+                        :disabled=" ! searchQuery "
                 >
             </form>
             <form
                 v-if="args.orderBy"
                 @submit.prevent="$emit( 'sort-albums' , orderBy )"
                 >
-                <font-awesome-icon icon="list-ol"
-                    style="margin-right: .6em"></font-awesome-icon>
+                <font-awesome-icon
+                        icon="list-ol"
+                        style="margin-right: .6em"></font-awesome-icon>
                 <select
                         class="input"
                     @change=" orderBy = $event.target.value "
@@ -33,10 +37,16 @@
                     >{{ $t(key) }}</option>
                 </select>
                 <br>
-                <input
+                <button
                         type="submit"
                         class="btn"
-                        :value="orderByButtonText">
+                        :ssvalue="orderByButtonText">
+                    <font-awesome-icon
+                        :icon=" orderBy == args.currentOrderBy ? 'redo' : 'sort' "
+                        ></font-awesome-icon>
+
+                    {{ orderByButtonText }}
+                </button>
             </form>
         </div>
         <div class="stretcherContent">
