@@ -5,7 +5,7 @@ const Ratifier = function( config ) {
     }
     return {
         config: config,
-        login( user , pass ) {
+        async login( user , pass ) {
             console.log( user, pass );
             console.log( 'Basic ' + btoa( user + ':' + pass ) );
             return fetch( config.url + 'ratifier/v1/login' , {
@@ -67,7 +67,7 @@ const Ratifier = function( config ) {
                 }
             }).then(result => result.json());
         },
-        getUserRatings: function( offset = 0 , order = 'date_desc' ) {
+        getUserRatings: async function( offset = 0 , order = 'date_desc' ) {
             let page = offset + 1;
             return fetch(
                 config.url
@@ -82,7 +82,7 @@ const Ratifier = function( config ) {
                 .then(result => result.json())
                 .then( data => data.data );
         },
-        addRating: function( ratingData ) {
+        addRating: async function( ratingData ) {
             return fetch(config.url + 'ratifier/v1/rating/', {
                 headers: {
                     'X-WP-Nonce': config.wpNonce,
@@ -94,6 +94,6 @@ const Ratifier = function( config ) {
             }).then(result => result.json());
         }
     }
-}
+};
 
 export default Ratifier;

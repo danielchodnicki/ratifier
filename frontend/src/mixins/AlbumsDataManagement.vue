@@ -10,41 +10,33 @@
             }
         },
         methods: {
-            getAllRatings() {
+            async getAllRatings() {
                 this.allRatings.isLoading = true;
-                this.ratifier.getRatedAlbums( ++this.allRatings.offset , this.allRatings.currentOrderBy )
-                    .then(
-                        ratings => {
-                            console.log(ratings);
-                            this.allRatings.isLoading = false;
-                            this.allRatings.hasMore = false;
-                            this.allRatings.albums = this.allRatings.albums.concat( ratings );
-                            if ( ! ratings.length || ratings.length < this.ratifier.getConfig( 'perPage' ) ) {
-                                this.allRatings.hasMore = false;
-                            }
-                            else {
-                                this.allRatings.hasMore = true;
-                            }
-                        }
-                    )
+                let ratings = await this.ratifier.getRatedAlbums( ++this.allRatings.offset , this.allRatings.currentOrderBy );
+                console.log(ratings);
+                this.allRatings.isLoading = false;
+                this.allRatings.hasMore = false;
+                this.allRatings.albums = this.allRatings.albums.concat( ratings );
+                if ( ! ratings.length || ratings.length < this.ratifier.getConfig( 'perPage' ) ) {
+                    this.allRatings.hasMore = false;
+                }
+                else {
+                    this.allRatings.hasMore = true;
+                }
             },
 
-            getUserRatings() {
+            async getUserRatings() {
                 this.userRatings.isLoading = true;
-                this.ratifier.getUserRatings( ++this.userRatings.offset , this.userRatings.currentOrderBy )
-                    .then(
-                        ratings => {
-                            this.userRatings.isLoading = false;
-                            this.userRatings.hasMore = false;
-                            this.userRatings.albums = this.userRatings.albums.concat( ratings );
-                            if ( ratings.length < this.ratifier.config.perPage ) {
-                                this.userRatings.hasMore = false;
-                            }
-                            else {
-                                this.userRatings.hasMore = true;
-                            }
-                        }
-                    )
+                let ratings = await this.ratifier.getUserRatings( ++this.userRatings.offset , this.userRatings.currentOrderBy )
+                this.userRatings.isLoading = false;
+                this.userRatings.hasMore = false;
+                this.userRatings.albums = this.userRatings.albums.concat( ratings );
+                if ( ratings.length < this.ratifier.config.perPage ) {
+                    this.userRatings.hasMore = false;
+                }
+                else {
+                    this.userRatings.hasMore = true;
+                }
             },
 
             sortAllAlbums( orderBy ) {
@@ -61,14 +53,12 @@
                 this.getUserRatings();
             },
 
-            rateAlbum( data ) {
-                this.ratifier.addRating({
+            async rateAlbum( data ) {
+                let album = await this.ratifier.addRating({
                     album_id: data.album_id,
                     rating_production: data.rating,
-                })
-                    .then( data => {
-                        this.updateAlbumData( data.data[0] );
-                    })
+                });
+                this.updateAlbumData( album.data[0] );
             },
 
             updateAlbumData: function( data ) {
@@ -105,16 +95,14 @@
                     })
             },
 
-            newSearch( searchQuery ) {
+            async newSearch( searchQuery ) {
                 this.searchAlbums.albums = [];
                 this.searchAlbums.isLoading = true;
                 this.searchAlbums.offset = 0;
-                this.ratifier.searchAlbums( searchQuery )
-                    .then(results => {
-                        this.searchAlbums.albums = results;
-                        this.searchAlbums.isLoading = false;
-                        this.searchAlbums.hasMore = true;
-                    });
+                let results = await this.ratifier.searchAlbums( searchQuery );
+                this.searchAlbums.albums = results;
+                this.searchAlbums.isLoading = false;
+                this.searchAlbums.hasMore = true;
             },
 
             userRatingsDefaults() {

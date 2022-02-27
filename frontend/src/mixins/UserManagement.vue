@@ -29,25 +29,23 @@
                 this.isLoggingIn = true;
                 this.loginErrorMsg = '';
                 this.loginError = false;
-                this.ratifier.login( data.username , data.password )
-                    .then( result => {
-                        this.isLoggingIn = false;
-                        if ( result.success ) {
-                            this.username = data.username;
-                            this.password = data.password;
-                            this.isLoggedIn = true;
-                            const d = new Date();
-                            d.setTime(d.getTime() + (1*24*60*60*1000));
-                            let expires = d.toUTCString();
-                            document.cookie = "ratifier_username=" + this.username + ";expires=" + expires + ";path=/";
-                            document.cookie = "ratifier_password=" + this.password + ";expires=" + expires + ";path=/";
-                        }
-                        else {
-                            this.loginError = result.code;
-                            this.loginErrorMsg = 'Login error message';
-                        }
-                        this.loadingScreen = false;
-                    })
+                let result = await this.ratifier.login( data.username , data.password );
+                this.isLoggingIn = false;
+                if ( result.success ) {
+                    this.username = data.username;
+                    this.password = data.password;
+                    this.isLoggedIn = true;
+                    const d = new Date();
+                    d.setTime(d.getTime() + (1*24*60*60*1000));
+                    let expires = d.toUTCString();
+                    document.cookie = "ratifier_username=" + this.username + ";expires=" + expires + ";path=/";
+                    document.cookie = "ratifier_password=" + this.password + ";expires=" + expires + ";path=/";
+                }
+                else {
+                    this.loginError = result.code;
+                    this.loginErrorMsg = 'Login error message';
+                }
+                this.loadingScreen = false;
             },
 
             tryLoggingIn() {
